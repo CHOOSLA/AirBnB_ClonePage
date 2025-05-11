@@ -24,4 +24,17 @@
 
   /* 추가 */
   --black: #000000;
+  --big-search-form_background : #ffffff
+
+  /* 폰트 weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 폰트 size */
+  --text-body-sm-font-size: 0.875rem;
+
+  /* 폰트 height */
+  --text-body-sm-line-height: 1.125rem;
 }
