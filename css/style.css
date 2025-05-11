@@ -1,0 +1,27 @@
+:root {
+  /* 프라이머리 컬러 */
+  --primary-color: #ff385c;
+
+  /* 백그라운드 컬러 */
+  --bg-light: #f7f7f7;
+  --bg-medium: #ebebeb;
+  --bg-dark: #dddddd;
+
+  /* 텍스트 컬러 */
+  --text-primary: #222222;
+  --text-secondary: #6a6a6a;
+  --text-muted: #897870;
+
+  /* 쉐도우 컬러 */
+  --white: #ffffff;
+  --white-90: #ffffffe6;
+  --white-60: #ffffff99;
+
+  /* 보더 컬러 */
+  --border-light: #eeeeee;
+  --border-medium: #ebebeb;
+  --border-dark: #00000033;
+
+  /* 추가 */
+  --black: #000000;
+}

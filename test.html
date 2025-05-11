@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>::after 데모</title>
+    <style>
+      /* 필수 입력 라벨에 적용할 스타일 */
+      .required::after {
+        /* ::after 가상 요소 선언 */
+        content: " *"; /* 라벨 뒤에 별표와 공백을 삽입 */
+        color: red; /* 별표 색상을 빨간색으로 지정 */
+        font-weight: bold; /* 굵게 표시 */
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label class="required">이름</label>
+      <input type="text" name="name" /><br />
+
+      <label class="required">이메일</label>
+      <input type="email" name="email" /><br />
+
+      <button type="submit">제출</button>
+    </form>
+  </body>
+</html>
