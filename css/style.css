@@ -24,7 +24,7 @@
 
   /* 추가 */
   --black: #000000;
-  --big-search-form_background : #ffffff
+  --big-search-form_background: #ffffff;
 
   /* 폰트 weight */
   --font-weight-regular: 400;
@@ -34,41 +34,53 @@
 
   /* 폰트 size */
   --text-body-sm-font-size: 0.875rem;
+  --text-body-large-font-size: 1rem;
 
   /* 폰트 height */
   --text-body-sm-line-height: 1.125rem;
+  --text-body-large-line-height: 1.25rem;
 }
 
-@media (min-width:550px){
+@media (min-width: 550px) {
   .main-grid {
-    --breakpoint-grid_columns : 2;
+    --breakpoint-grid_columns: 2;
   }
 }
 
-
-@media (min-width:950px){
-  .main-grid {
-    --breakpoint-grid_columns : 3;
+@media (min-width: 744px) {
+  :root {
+    --explore-inline-start: 40px;
+    --explore-inline-end: 40px;
   }
 }
 
-
-@media (min-width:1128px){
+@media (min-width: 950px) {
   .main-grid {
-    --breakpoint-grid_columns : 4;
+    --breakpoint-grid_columns: 3;
   }
 }
 
-@media (min-width:1640px){
+@media (min-width: 1128px) {
   .main-grid {
-    --breakpoint-grid_columns : 5;
+    --breakpoint-grid_columns: 4;
   }
 }
 
-@media (min-width:1880px){
-  .main-grid {
-    --breakpoint-grid_columns : 6;
+@media (min-width: 1440px) {
+  :root {
+    --explore-inline-start: 80px;
+    --explore-inline-end: 80px;
   }
 }
 
+@media (min-width: 1640px) {
+  .main-grid {
+    --breakpoint-grid_columns: 5;
+  }
+}
 
+@media (min-width: 1880px) {
+  .main-grid {
+    --breakpoint-grid_columns: 6;
+  }
+}

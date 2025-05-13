@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 스타일 normalize -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+
+    <style>
+      :root {
+        --vh: 10px;
+      }
+      html {
+        height: 100%;
+        box-sizing: border-box;
+        display: block;
+        scrollbar-gutter: stable;
+      }
+
+      body {
+        font-family: Airbnb Cereal VF, Circular, -apple-system,
+          BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        font-size: 0.875rem;
+        line-height: 1.43;
+        color: var(--text-primary);
+        line-break: strict;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-container {
+        display: contents;
+      }
+
+      .dialog-back {
+        background: var(--text-primary);
+        opacity: 0.4;
+        /* position: fixed; */
+
+        z-index: 2000;
+      }
+
+      .dialog {
+        /* position: fixed; */
+        padding: 40px;
+        z-index: 2000;
+        max-height: max(-webkit-fill-available, calc(var(--vh, 1vh) * 100));
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+      }
+
+      .dialog-container {
+        opacity: 1;
+        position: relative;
+        width: 100%;
+        /* max-width: 568px; */
+        max-height: 100%;
+
+        background: var(--white);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+
+        display: flex;
+        flex-direction: column;
+        overflow: clip;
+        border-radius: 32px;
+      }
+
+      .dialog-cancel-container {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        z-index: 1;
+        display: flex;
+      }
+
+      .dialog-cancel-button {
+        padding: 0;
+        margin: 0;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        outline: none;
+        display: inline-block;
+        border-radius: 50%;
+      }
+
+      .dialog-cancel-button::before {
+        content: "";
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        display: block;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+      }
+
+      .dialog-header {
+        flex: 0 0 auto;
+        border-bottom: 1px solid var(--bg-dark);
+        min-height: 64px;
+        padding: 0 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .dialong-header-container {
+        text-align: center;
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+
+        margin: 0 16px;
+      }
+
+      .dialog-main {
+        flex: 1 1 auto;
+        padding: 24px;
+        overflow-y: auto;
+      }
+
+      .welcome {
+        display: block;
+        font-size: 1.375rem !important;
+        line-height: 1.625rem !important;
+        color: rgb(34, 34, 34) !important;
+        font-weight: 500 !important;
+        margin-bottom: 8px !important;
+      }
+
+      .dialog-input-container {
+        border-radius: 8px;
+        background-color: var(--white);
+        position: relative;
+      }
+
+      /* .dialog-input-container-radius {
+        --dls-comboelement-background-top: 0px;
+        --dls-comboelement-background-left: 0px;
+        --dls-comboelement-background-right: 0px;
+        --dls-comboelement-background-bottom: -1px;
+        --dls-comboelement-background-border-top-left-radius: 8px;
+        --dls-comboelement-background-border-top-right-radius: 8px;
+        --dls-comboelement-background-border-bottom-right-radius: 0px;
+        --dls-comboelement-background-border-bottom-left-radius: 0px;
+        --dls-comboelement-background-background: var(
+          --comboInputGroup_backgroundColor,
+          none
+        );
+
+        position: absolute;
+        pointer-events: none;
+        top: var(--dls-comboelement-background-top);
+        bottom: var(--dls-comboelement-background-bottom);
+        left: var(--dls-comboelement-background-left);
+        right: var(--dls-comboelement-background-right);
+
+        border-bottom-left-radius: var(
+          --dls-comboelement-background-border-bottom-left-radius
+        );
+        border-bottom-right-radius: var(
+          --dls-comboelement-background-border-bottom-right-radius
+        );
+        border-top-left-radius: var(
+          --dls-comboelement-background-border-top-left-radius
+        );
+        border-top-right-radius: var(
+          --dls-comboelement-background-border-top-right-radius
+        );
+      } */
+
+      .dialog-input-container-border {
+        --dls-comboelement-foreground-top: 0px;
+        --dls-comboelement-foreground-left: 0px;
+        --dls-comboelement-foreground-right: 0px;
+        --dls-comboelement-foreground-bottom: -1px;
+        --dls-comboelement-foreground-border-width: 1px;
+        --dls-comboelement-foreground-z-index: 0;
+
+        border-top-left-radius: var(
+          --dls-comboelement-foreground-border-top-left-radius
+        );
+        border-top-right-radius: var(
+          --dls-comboelement-foreground-border-top-right-radius
+        );
+        border-bottom-left-radius: var(
+          --dls-comboelement-foreground-border-bottom-left-radius
+        );
+        border-bottom-right-radius: var(
+          --dls-comboelement-foreground-border-bottom-right-radius
+        );
+        top: var(--dls-comboelement-foreground-top);
+        right: var(--dls-comboelement-foreground-right);
+        bottom: var(--dls-comboelement-foreground-right);
+        left: var(--dls-comboelement-foreground-left);
+        z-index: var(--dls-comboelement-foreground-z-index);
+        border-style: solid;
+        border-color: #8c8c8c;
+        border-width: var(--dls-comboelement-foreground-border-width);
+        position: absolute;
+        pointer-events: none;
+      }
+
+      custom-input:first-child {
+        --dls-comboelement-foreground-border-top-left-radius: 8px;
+        --dls-comboelement-foreground-border-top-right-radius: 8px;
+        --dls-comboelement-foreground-border-bottom-right-radius: 0px;
+        --dls-comboelement-foreground-border-bottom-left-radius: 0px;
+      }
+
+      custom-input:last-child {
+        --dls-comboelement-foreground-border-top-left-radius: 0px;
+        --dls-comboelement-foreground-border-top-right-radius: 0px;
+        --dls-comboelement-foreground-border-bottom-right-radius: 8px;
+        --dls-comboelement-foreground-border-bottom-left-radius: 8px;
+      }
+
+      .dialog-input-container2 {
+        display: flex;
+        min-height: 56px;
+        width: 100%;
+        border: transparent;
+        position: relative;
+        box-shadow: none;
+        font-size: var(--text-body-large-font-size);
+        line-height: var(--text-body-large-line-height);
+        border-radius: 0;
+        cursor: text;
+      }
+
+      .dialog-input-text-title {
+        margin: 0;
+        top: 18px;
+        left: 12px;
+        right: 12px;
+        padding-top: 24px;
+        transform-origin: 0% 0%;
+        position: absolute;
+        color: var(--text-secondary);
+        transform: translateY(-8px) scale(0.75);
+      }
+
+      .dialog-input-text-title-text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .dialog-input-text-main {
+        padding: 0;
+        margin: 0;
+        right: 12px;
+        left: 12px;
+        top: 18px;
+        position: absolute;
+      }
+
+      .dialog-input-text-main-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .dialog-rule {
+        margin-top: 8px !important;
+        color: rgb(34, 34, 34) !important;
+        font-size: 0.75rem !important;
+        line-height: 1rem !important;
+        font-weight: 400 !important;
+      }
+
+      .dialog-continue {
+        margin-top: 16px;
+        margin-bottom: 24px;
+      }
+
+      .dialog-continue-button {
+        width: 100%;
+        color: var(--white);
+        display: inline-block;
+        text-decoration: none;
+        outline: none;
+        position: relative;
+        background: var(--primary-color);
+        padding: 14px 24px;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 8px;
+        border: none;
+
+        font-size: var(--text-body-large-font-size);
+        line-height: var(--text-body-large-line-height);
+        font-weight: var(--font-weight-medium);
+      }
+
+      /* 마우스 호버 디자인 설정하는 구간 */
+      /* 자식 div를 사용해서 하이라이트 효과를 줌 */
+      .dialog-continue-button-detail {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        min-width: 200px;
+      }
+
+      @keyframes overlay {
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="main-container">
+        <section>
+          <div>
+            <div class="dialog">
+              <div style="display: contents">
+                <div class="dialog-container">
+                  <div class="dialog-cancel-container">
+                    <button class="dialog-cancel-button">
+                      <span style="position: relative; color: black">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 32 32"
+                          aria-hidden="true"
+                          role="presentation"
+                          focusable="false"
+                          style="
+                            display: block;
+                            fill: none;
+                            height: 16px;
+                            width: 16px;
+                            stroke: currentcolor;
+                            stroke-width: 3;
+                            overflow: visible;
+                          "
+                        >
+                          <path d="m6 6 20 20M26 6 6 26"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <header class="dialog-header">
+                    <div
+                      style="
+                        flex-shrink: 0;
+                        flex-grow: 0;
+                        text-align: left;
+                        flex-basis: 16;
+                      "
+                    ></div>
+                    <div class="dialong-header-container">
+                      <h1 style="font-size: 1rem; padding: 0; margin: 0">
+                        <div style="text-overflow: ellipsis; overflow: hidden">
+                          로그인 또는 회원 가입
+                        </div>
+                      </h1>
+                    </div>
+                    <div
+                      style="
+                        flex-shrink: 0;
+                        flex-grow: 0;
+                        text-align: right;
+                        flex-basis: 16;
+                      "
+                    ></div>
+                  </header>
+
+                  <div class="dialog-main">
+                    <div>
+                      <div
+                        style="
+                          margin-top: 8px !important;
+                          margin-bottom: 24px !important;
+                        "
+                      >
+                        <h2 class="welcome">
+                          에어비앤비에 오신 것을 환영합니다
+                        </h2>
+                      </div>
+                      <form method="post">
+                        <div style="margin-top: 16px !important">
+                          <div class="dialog-input-container">
+                            <!-- 하나의 입력 -->
+                            <custom-input>
+                              <div style="display: flex">
+                                <div style="flex: 1; position: relative">
+                                  <!-- <div
+                                    class="dialog-input-container-radius"
+                                  ></div> -->
+                                  <div class="dialog-input-container2">
+                                    <label
+                                      style="
+                                        position: relative;
+                                        flex: 1;
+                                        padding: 0;
+                                      "
+                                    >
+                                      <!-- <div class="dialog-input-text-title">
+                                          <div class="dialog-input-text-title-text">
+                                            아이디
+                                          </div>
+                                        </div> -->
+                                      <div class="dialog-input-text-main">
+                                        <div
+                                          class="dialog-input-text-main-text"
+                                        >
+                                          아이디
+                                        </div>
+                                      </div>
+                                    </label>
+                                  </div>
+                                  <div
+                                    class="dialog-input-container-border"
+                                  ></div>
+                                </div>
+                              </div>
+                            </custom-input>
+                            <!-- 하나의 입력 -->
+                            <custom-input>
+                              <div style="display: flex">
+                                <div style="flex: 1; position: relative">
+                                  <!-- <div
+                                    class="dialog-input-container-radius"
+                                  ></div> -->
+                                  <div class="dialog-input-container2">
+                                    <label
+                                      style="
+                                        position: relative;
+                                        flex: 1;
+                                        padding: 0;
+                                      "
+                                    >
+                                      <!-- <div class="dialog-input-text-title">
+                                          <div class="dialog-input-text-title-text">
+                                            아이디
+                                          </div>
+                                        </div> -->
+                                      <div class="dialog-input-text-main">
+                                        <div
+                                          class="dialog-input-text-main-text"
+                                        >
+                                          비밀번호
+                                        </div>
+                                      </div>
+                                    </label>
+                                  </div>
+                                  <div
+                                    class="dialog-input-container-border"
+                                  ></div>
+                                </div>
+                              </div>
+                            </custom-input>
+                          </div>
+
+                          <div class="dialog-rule">
+                            <span
+                              >전화나 문자로 전화번호를 확인하겠습니다. 일반
+                              문자 메시지 요금 및 데이터 요금이
+                              부과됩니다.</span
+                            >
+                            <a href="">개인정보 처리방침</a>
+                          </div>
+
+                          <div style="margin-top: 16px"></div>
+                          <div class="dialog-continue">
+                            <button class="dialog-continue-button">
+                              <span
+                                class="dialog-continue-button-detail"
+                              ></span>
+                              <span style="position: relative">계속</span>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
