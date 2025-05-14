@@ -58,6 +58,14 @@
   .main-grid {
     --breakpoint-grid_columns: 3;
   }
+
+  .icon-container {
+    display: block;
+  }
+
+  .icon-container-small {
+    display: none;
+  }
 }
 
 @media (min-width: 1128px) {

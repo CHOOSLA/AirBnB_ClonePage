@@ -165,8 +165,14 @@
 
       .icon-container {
         color: var(--primary-color);
+        display: none;
+        cursor: pointer;
+      }
+
+      .icon-container-small {
         display: block;
         cursor: pointer;
+        color: var(--primary-color);
       }
 
       .scrolled-search-bar-container {
@@ -1387,6 +1393,58 @@
         height: 100%;
         background-repeat: no-repeat;
         object-fit: cover;
+      }
+
+      @media (min-width: 550px) {
+        .main-grid {
+          --breakpoint-grid_columns: 2;
+        }
+      }
+
+      @media (min-width: 744px) {
+        :root {
+          --explore-inline-start: 40px;
+          --explore-inline-end: 40px;
+        }
+      }
+
+      @media (min-width: 950px) {
+        .main-grid {
+          --breakpoint-grid_columns: 3;
+        }
+
+        .icon-container {
+          display: block;
+        }
+
+        .icon-container-small {
+          display: none;
+        }
+      }
+
+      @media (min-width: 1128px) {
+        .main-grid {
+          --breakpoint-grid_columns: 4;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        :root {
+          --explore-inline-start: 80px;
+          --explore-inline-end: 80px;
+        }
+      }
+
+      @media (min-width: 1640px) {
+        .main-grid {
+          --breakpoint-grid_columns: 5;
+        }
+      }
+
+      @media (min-width: 1880px) {
+        .main-grid {
+          --breakpoint-grid_columns: 6;
+        }
       }
     </style>
   </head>

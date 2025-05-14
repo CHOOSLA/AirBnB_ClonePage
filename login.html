@@ -39,9 +39,14 @@
       .dialog-back {
         background: var(--text-primary);
         opacity: 0.4;
-        /* position: fixed; */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
 
-        z-index: 2000;
+        /* z-index: 2000; */
+        background-color: black;
       }
 
       .dialog {
@@ -272,6 +277,21 @@
         max-width: 100%;
       }
 
+      .diaglog-input-text-main-input {
+        display: flex;
+        cursor: default;
+      }
+
+      .dialong-input-text-main-input2 {
+        width: 100%;
+        color: inherit;
+        border: none;
+        margin: 26px 12px 6px 28px;
+        padding: 0;
+        background-color: transparent;
+        outline: none;
+      }
+
       .dialog-rule {
         margin-top: 8px !important;
         color: rgb(34, 34, 34) !important;
@@ -325,6 +345,7 @@
   <body>
     <div>
       <div class="main-container">
+        <div class="dialog-back"></div>
         <section>
           <div>
             <div class="dialog">
@@ -421,6 +442,14 @@
                                         >
                                           아이디
                                         </div>
+                                      </div>
+                                      <div
+                                        class="diaglog-input-text-main-input"
+                                      >
+                                        <input
+                                          type="text"
+                                          class="dialong-input-text-main-input2"
+                                        />
                                       </div>
                                     </label>
                                   </div>
