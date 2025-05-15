@@ -377,7 +377,8 @@
         position: relative;
         z-index: 1;
         text-decoration: none;
-        display: inline-block;
+        /* display: inline-block; */
+        display: none;
         color: var(--text-primary);
       }
 
@@ -1425,6 +1426,10 @@
       @media (min-width: 1128px) {
         .main-grid {
           --breakpoint-grid_columns: 4;
+        }
+
+        .profile-hosting-a {
+          display: inline-block;
         }
       }
 
